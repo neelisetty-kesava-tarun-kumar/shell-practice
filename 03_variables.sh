@@ -1,7 +1,7 @@
 #!/bin/bash 
 
-Person1=India #No Space should between the variable and value
-Person2=Russia
+Person1=Iran #No Space should between the variable and value
+Person2=USA
 
 
 echo "$Person1 :: Hello $Person2, How are you ?"
