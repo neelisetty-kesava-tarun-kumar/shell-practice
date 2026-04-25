@@ -27,4 +27,4 @@ do
     VALIDATE $? "$package installation"
 done
 
-# Working Process is by typing the command as sudo sh 14_logs.sh(FILENAME) nginx mysql nodejs(Name of the Arguments).
+# Working Process is by typing the command as sudo sh 14_loops.sh(FILENAME) nginx mysql nodejs(Name of the Arguments).
