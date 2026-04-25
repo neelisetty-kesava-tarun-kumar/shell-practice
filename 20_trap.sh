@@ -25,7 +25,7 @@ for package in "$@"
 do
     if ! dnf list installed "$package" &>> "$LOGS_FILE"; then
         echo "$package is not installed, installing now" | tee -a "$LOGS_FILE"
-        dnf install "$package" -y &>> "$LOGS_FILE"
+        dnf install "$package" &>> "$LOGS_FILE"
         echo -e "${G}$package installation SUCCESS${N}" | tee -a "$LOGS_FILE"
     else
         echo -e "${Y}$package already installed, skipping${N}" | tee -a "$LOGS_FILE"
