@@ -27,12 +27,12 @@ if [ $# -lt 2 ]; then
     USAGE
 fi
 
-if [ -d $SOURCE_DIR ]: then
+if [ -d $SOURCE_DIR ]; then
     echo -e "$G Source directory $SOURCE_DIR not exists. $N"
     exit 1
 fi
 
-if [ -d $DEST_DIR ]: then
+if [ -d $DEST_DIR ]; then
     echo -e "$G Destination directory $DEST_DIR not exists. $N"
     exit 1
 fi
