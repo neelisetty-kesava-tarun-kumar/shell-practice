@@ -13,18 +13,18 @@ DEST_DIR=$2
 DAYS=${3:-14} #14 days is the default value if user is not provided.
 
 if [ $USERID -ne 0 ]; then
-    echo -e "$R Please run this script with root user access $N" 
+    log -e "$R Please run this script with root user access $N" 
 fi
 
 mkdir -p $LOGS_FOLDER
 
 USAGE(){
-    echo -e "$R Usage: $0 <source_directory> <destination_directory> [default 14 days]$N"
+    log -e "$R Usage: $0 <source_directory> <destination_directory> [default 14 days]$N"
     exit 1
 }
 
 log(){
-    echo -e "$(date "+%Y-%m-%d %H:%M:%S") | $1 " | tee -a $LOGS_FILE
+    log -e "$(date "+%Y-%m-%d %H:%M:%S") | $1 " | tee -a $LOGS_FILE
 }
 
 if [ $# -lt 2 ]; then
@@ -32,23 +32,23 @@ if [ $# -lt 2 ]; then
 fi
 
 if [ -d $SOURCE_DIR ]; then
-    echo -e "$G Source directory $SOURCE_DIR exists."
+    log -e "$G Source directory $SOURCE_DIR exists."
 else
-    echo -e "$R Source directory $SOURCE_DIR does not exist."
+    log -e "$R Source directory $SOURCE_DIR does not exist."
     exit 1
 fi
 
 if [ -d $DEST_DIR ]; then
-    echo -e "$G Destination directory $DEST_DIR exists."
+    log -e "$G Destination directory $DEST_DIR exists."
 else
-    echo -e "$R Destination directory $DEST_DIR does not exist."
+    log -e "$R Destination directory $DEST_DIR does not exist."
     exit 1
 fi
 
 #Find the older files
 FILES=$(find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS)
 
-echo -e "$Y Backing up files from $SOURCE_DIR to $DEST_DIR" 
+log -e "$Y Backing up files from $SOURCE_DIR to $DEST_DIR" 
 
 log "Backup startup from $SOURCE_DIR to $DEST_DIR"
 log "Source directory: $SOURCE_DIR"
@@ -62,7 +62,7 @@ else
     log "Files to be archived: $FILES"
     TIMESTAMP=$(date "+%F-%H:%M:%S")
     ZIP_FILE_NAME="$DEST_DIR/app-log-$TIMESTAMP.zip"
-    echo -e "$Y Achive file name : $ZIP_FILE_NAME"
+    log -e "$Y Achive file name : $ZIP_FILE_NAME"
     tar -zcvf $ZIP_FILE_NAME $(find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS)
 
     #Checking if the zip file is created or not
@@ -71,9 +71,9 @@ else
         
         while IFS= read -r filepath; do
         # Process each line here
-        echo "Deleting file: $filepath"
+        log "Deleting file: $filepath"
         rm -f $filepath
-        echo "Deleted file: $filepath"
+        log "Deleted file: $filepath"
         done <<< $FILES
     else
         log "$R Backup failed: $ZIP_FILE_NAME not created. Archivation process is failure."
