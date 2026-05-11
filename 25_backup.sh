@@ -19,7 +19,7 @@ fi
 mkdir -p $LOGS_FOLDER
 
 USAGE(){
-    log -e "$R Usage: $0 <source_directory> <destination_directory> [default 14 days]$N"
+    log "$R Usage: $0 <source_directory> <destination_directory> [default 14 days]$N"
     exit 1
 }
 
