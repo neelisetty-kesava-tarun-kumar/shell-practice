@@ -46,7 +46,7 @@ else
 fi
 
 #Find the older files
-FILE=$(find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS)
+FILES=$(find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS)
 
 echo -e "$Y Backing up files from $SOURCE_DIR to $DEST_DIR" 
 
@@ -55,6 +55,13 @@ log "Source directory: $SOURCE_DIR"
 log "Destination directory: $DEST_DIR"
 log "Days: $DAYS"
 
-if [ -z "$FILE" ]; then
-    log "No file of achieve .. Skipping backup process"
+if [ -z "$FILES" ]; then
+    log "No files found .. Skipping backup process"
+else
+    #app-logs-$timestamp.zip in this form it should be
+    log "Files to be archived: $FILES"
+    TIMESTAMP=$(date "+%F-%H:%M:%S")
+    ZIP_FILE_NAME="$DEST_DIR/app-log-$TIMESTAMP.zip"
+    echo -e "$Y Achive file name : $ZIP_FILE_NAME"
+    
 fi
