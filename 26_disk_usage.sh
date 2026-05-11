@@ -13,7 +13,7 @@ log(){
 DISK_USAGE=$(df -hT | grep -v Filesystem)
 USAGE_THRESHOLD=2 # Set the threshold for disk usage percentage, Generally, 80% or higher is considered high. I am using 2% for testing purpose, you can change it to 80% or higher.
 
-while IFS = read -r line
+while IFS= read -r line
 do
     USAGE=$(df -hT | grep -v Filesystem | awk '{print $6}' | cut -d "%" -f1)
     PARTITON=$(df -hT | grep -v Filesystem | awk '{print $7}')
