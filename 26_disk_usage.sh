@@ -18,7 +18,7 @@ do
     USAGE=$(df -hT | grep -v Filesystem | awk '{print $6}' | cut -d "%" -f1)
     PARTITON=$(df -hT | grep -v Filesystem | awk '{print $7}')
 
-    if [ $USAGE -ge $USAGE_THRESHOLD ]; then
+    if [ "$USAGE" -ge "$USAGE_THRESHOLD" ]; then
         MESSAGE+="$R Disk usage for partition $PARTITON is at $USAGE% which is above the threshold of $USAGE_THRESHOLD% $N"
     else
         MESSAGE+="$G Disk usage for partition $PARTITON is at $USAGE% which is below the threshold of $USAGE_THRESHOLD% $N"
