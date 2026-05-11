@@ -48,7 +48,7 @@ fi
 fi
 
 #Find the older files
-FILE = $(find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS)
+FILE=$(find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS)
 
 echo -e "$Y Backing up files from $SOURCE_DIR to $DEST_DIR $N" 
 
