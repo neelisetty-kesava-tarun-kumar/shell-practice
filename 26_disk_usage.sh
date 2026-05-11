@@ -11,7 +11,7 @@ log(){
 }
 
 DISK_USAGE=$(df -hT | grep -v Filesystem)
-USAGE_THRESHOLD=2 # Set the threshold for disk usage percentage, Generally, 80% or higher is considered high. I am using 2% for testing purpose, you can change it to 80% or higher.
+USAGE_THRESHOLD=3 # Set the threshold for disk usage percentage, Generally, 80% or higher is considered high. I am using 3% for testing purpose, you can change it to 80% or higher.
 
 while IFS= read -r line
 do
