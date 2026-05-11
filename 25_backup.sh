@@ -55,3 +55,6 @@ log "Source directory: $SOURCE_DIR"
 log "Destination directory: $DEST_DIR"
 log "Days: $DAYS"
 
+if [ -z "$FILE" ]; then
+    log "No file of achieve .. Skipping backup process"
+fi
