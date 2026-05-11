@@ -55,7 +55,7 @@ log "Source directory: $SOURCE_DIR"
 log "Destination directory: $DEST_DIR"
 log "Days: $DAYS"
 
-if [ -z "$FILES" ]; then
+if [ -z "${FILES}" ]; then
     log "No files found .. Skipping backup process"
 else
     #app-logs-$timestamp.zip in this form it should be
@@ -63,5 +63,20 @@ else
     TIMESTAMP=$(date "+%F-%H:%M:%S")
     ZIP_FILE_NAME="$DEST_DIR/app-log-$TIMESTAMP.zip"
     echo -e "$Y Achive file name : $ZIP_FILE_NAME"
-    
+    find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS | tar -zcvf $ZIP_FILE_NAME
+
+    #Checking if the zip file is created or not
+    if [ -f $ZIP_FILE_NAME ]; then
+        log "Backup successful: $ZIP_FILE_NAME created. Archivation process is successful."
+        
+        while IFS= read -r filepath; do
+        # Process each line here
+        echo "Deleting file: $filepath"
+        rm -f $filepath
+        echo "Deleted file: $filepath"
+        done <<< $FILES
+    else
+        log "Backup failed: $ZIP_FILE_NAME not created. Archivation process is failure."
+        exit 1
+    fi
 fi
