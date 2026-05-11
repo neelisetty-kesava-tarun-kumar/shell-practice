@@ -9,7 +9,7 @@ C='\033[0;36m'
 W='\033[0;37m'
 N='\033[0m'
 
-LOG_DIR="/home/ec2-user/applogs"
+LOG_DIR="/home/ec2-user/app-logs" #Changes according to the user
 LOG_FILE="$LOG_DIR/$0.log"
 
 if [ ! -d "$LOG_DIR" ]; then
