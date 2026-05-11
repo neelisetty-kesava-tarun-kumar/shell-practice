@@ -32,25 +32,23 @@ if [ $# -lt 2 ]; then
 fi
 
 if [ -d $SOURCE_DIR ]; then
-    echo -e "$G Source directory $SOURCE_DIR exists. $N"
+    echo -e "$G Source directory $SOURCE_DIR exists."
 else
-    echo -e "$R Source directory $SOURCE_DIR does not exist. $N"
+    echo -e "$R Source directory $SOURCE_DIR does not exist."
     exit 1
 fi
 
 if [ -d $DEST_DIR ]; then
-    echo -e "$G Destination directory $DEST_DIR exists. $N"
+    echo -e "$G Destination directory $DEST_DIR exists."
 else
-    echo -e "$R Destination directory $DEST_DIR does not exist. $N"
-    exit 1
-fi
+    echo -e "$R Destination directory $DEST_DIR does not exist."
     exit 1
 fi
 
 #Find the older files
 FILE=$(find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS)
 
-echo -e "$Y Backing up files from $SOURCE_DIR to $DEST_DIR $N" 
+echo -e "$Y Backing up files from $SOURCE_DIR to $DEST_DIR" 
 
 log "Backup startup from $SOURCE_DIR to $DEST_DIR"
 log "Source directory: $SOURCE_DIR"
