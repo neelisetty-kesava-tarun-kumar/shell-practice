@@ -23,7 +23,7 @@ USAGE(){
     exit 1
 }
 
-LOG(){
+log(){
     echo -e "$(date "+%Y-%m-%d %H:%M:%S") | $1 " | tee -a $LOGS_FILE
 }
 
