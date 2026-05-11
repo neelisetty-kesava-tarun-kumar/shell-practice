@@ -67,7 +67,7 @@ else
 
     #Checking if the zip file is created or not
     if [ -f $ZIP_FILE_NAME ]; then
-        log "Backup successful: $ZIP_FILE_NAME created. Archivation process is successful."
+        log "$G Backup successful: $ZIP_FILE_NAME created. Archivation process is successful."
         
         while IFS= read -r filepath; do
         # Process each line here
@@ -76,7 +76,7 @@ else
         echo "Deleted file: $filepath"
         done <<< $FILES
     else
-        log "Backup failed: $ZIP_FILE_NAME not created. Archivation process is failure."
+        log "$R Backup failed: $ZIP_FILE_NAME not created. Archivation process is failure."
         exit 1
     fi
 fi
