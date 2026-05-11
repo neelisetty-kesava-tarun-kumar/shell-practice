@@ -15,8 +15,8 @@ USAGE_THRESHOLD=2 # Set the threshold for disk usage percentage, Generally, 80% 
 
 while IFS= read -r line
 do
-    USAGE=$(df -hT | grep -v Filesystem | awk '{print $6}' | cut -d "%" -f1)
-    PARTITON=$(df -hT | grep -v Filesystem | awk '{print $7}')
+    USAGE=$(echo "$line" | awk '{print $6}' | cut -d "%" -f1)
+    PARTITON=$(echo "$line" | awk '{print $7}')
 
     if [ "$USAGE" -ge "$USAGE_THRESHOLD" ]; then
         MESSAGE+="$R Disk usage for partition $PARTITON is at $USAGE% which is above the threshold of $USAGE_THRESHOLD% $N"
