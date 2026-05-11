@@ -23,6 +23,10 @@ USAGE(){
     exit 1
 }
 
+LOG(){
+    echo -e "$Y $(date +%Y-%m-%d-%H-%M-%S) $1 $N" | tee -a $LOGS_FILE
+}
+
 if [ $# -lt 2 ]; then
     USAGE
 fi
@@ -42,3 +46,14 @@ else
 fi
     exit 1
 fi
+
+#Find the older files
+FILE = $(find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS)
+
+echo -e "$Y Backing up files from $SOURCE_DIR to $DEST_DIR $N" 
+
+log "Backup startup from $SOURCE_DIR to $DEST_DIR"
+log "Source directory: $SOURCE_DIR"
+log "Destination directory: $DEST_DIR"
+log "Days: $DAYS"
+
