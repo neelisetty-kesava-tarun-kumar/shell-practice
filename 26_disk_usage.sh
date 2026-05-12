@@ -21,13 +21,13 @@ do
     PARTITION=$(echo "$line" | awk '{print $7}')
 
     if [ "$USAGE" -ge "$USAGE_THRESHOLD" ]; then
-        MESSAGE+="Disk usage for partition $PARTITION is at $USAGE% which is above the threshold of $USAGE_THRESHOLD% <br>"
-    else
-        MESSAGE+="Disk usage for partition $PARTITION is at $USAGE% which is below the threshold of $USAGE_THRESHOLD% <br>"
+        MESSAGE+="Disk usage for partition $PARTITION is at $USAGE% <br>"
+    #else
+        #MESSAGE+="Disk usage for partition $PARTITION is at $USAGE% <br>"
     fi
 
 done <<< "$DISK_USAGE"
 
 echo -e "$MESSAGE"
 
-sh mail.sh "2200030017cseh@gmail.com" "High disk usage alert on $IP_ADDRESS" "$MESSAGE" "HIGH_DISK_USAGE" "$IP_ADDRESS" "DevOps Team"
+sh mail.sh "2200030017cseh@gmail.com" "Disk usage alert on $IP_ADDRESS" "$MESSAGE" "HIGH_DISK_USAGE" "$IP_ADDRESS" "DevOps Team"
