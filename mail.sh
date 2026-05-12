@@ -8,15 +8,17 @@ SERVER_IP="$5"
 TO_TEAM="$6"
 
 # Read HTML template
-FINAL_MESSAGE=$(cat mail.html)
+#FINAL_MESSAGE=$(cat mail.html)
 
 # Replace placeholders
-FINAL_MESSAGE=$(echo "$FINAL_MESSAGE" | sed "s|TO_TEAM|$TO_TEAM|g")
-FINAL_MESSAGE=$(echo "$FINAL_MESSAGE" | sed "s|ALERT_TYPE|$ALERT_TYPE|g")
-FINAL_MESSAGE=$(echo "$FINAL_MESSAGE" | sed "s|SERVER_IP|$SERVER_IP|g")
+#FINAL_MESSAGE=$(echo "$FINAL_MESSAGE" | sed "s|TO_TEAM|$TO_TEAM|g")
+#FINAL_MESSAGE=$(echo "$FINAL_MESSAGE" | sed "s|ALERT_TYPE|$ALERT_TYPE|g")
+#FINAL_MESSAGE=$(echo "$FINAL_MESSAGE" | sed "s|SERVER_IP|$SERVER_IP|g")
 
 # Replace MESSAGE safely
-FINAL_MESSAGE=${FINAL_MESSAGE//MESSAGE/$MESSAGE_BODY}
+#FINAL_MESSAGE=${FINAL_MESSAGE//MESSAGE/$MESSAGE_BODY}
+
+FINAL_MESSAGE=$(sed "s/TO_TEAM/$TO_TEAM/g" -e "s/ALERT_TYPE/$ALERT_TYPE/g" -e "s/SERVER_IP/$SERVER_IP/g" -e "s/MESSAGE/$MESSAGE_BODY/g" mail.html)
 
 # Send mail using msmtp
 {
