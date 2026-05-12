@@ -6,8 +6,7 @@ Y='\033[0;33m'
 W='\033[0;37m'
 N='\033[0m'
 MESSAGE=""
-IP_ADDRESS=$(curl http://169.254.169.254/latest/meta-data/local-ipv4)
-
+IP_ADDRESS=$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)
 
 log(){
     echo -e "$(date "+%Y-%m-%d %H:%M:%S") | $1 " | tee -a $LOGS_FILE
@@ -22,9 +21,9 @@ do
     PARTITION=$(echo "$line" | awk '{print $7}')
 
     if [ "$USAGE" -ge "$USAGE_THRESHOLD" ]; then
-        MESSAGE+="$R Disk usage for partition $PARTITION is at $USAGE% which is above the threshold of $USAGE_THRESHOLD% $N \n"
+        MESSAGE+="Disk usage for partition $PARTITION is at $USAGE% which is above the threshold of $USAGE_THRESHOLD% <br>"
     else
-        MESSAGE+="$G Disk usage for partition $PARTITION is at $USAGE% which is below the threshold of $USAGE_THRESHOLD% $N \n"
+        MESSAGE+="Disk usage for partition $PARTITION is at $USAGE% which is below the threshold of $USAGE_THRESHOLD% <br>"
     fi
 
 done <<< "$DISK_USAGE"
